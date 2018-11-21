@@ -1,0 +1,5 @@
+{
+  "ConnectionStrings": {
+    "WebEntityFrameworkDB": "Data Source=DESKTOP-8R0LD61\\SQLEXPRESS; Initial Catalog=WebEntityFrameworkDB; Integrated Security=SSPI; "
+  }
+}
