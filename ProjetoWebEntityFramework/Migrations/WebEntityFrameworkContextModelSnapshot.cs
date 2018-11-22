@@ -25,15 +25,11 @@ namespace ProjetoWebEntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("PedidoId");
-
                     b.Property<int?>("ProdutoId");
 
                     b.Property<int>("Quantidade");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PedidoId");
 
                     b.HasIndex("ProdutoId");
 
@@ -48,7 +44,11 @@ namespace ProjetoWebEntityFramework.Migrations
 
                     b.Property<DateTime>("DataPedido");
 
+                    b.Property<int?>("PedidoId");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("PedidoId");
 
                     b.ToTable("Pedido");
                 });
@@ -70,13 +70,16 @@ namespace ProjetoWebEntityFramework.Migrations
 
             modelBuilder.Entity("ProjetoWebEntityFramework.Dados.Entities.ItemPedido", b =>
                 {
-                    b.HasOne("ProjetoWebEntityFramework.Dados.Entities.Pedido")
-                        .WithMany("ItemPedidos")
-                        .HasForeignKey("PedidoId");
-
                     b.HasOne("ProjetoWebEntityFramework.Dados.Entities.Produto", "Produto")
                         .WithMany()
                         .HasForeignKey("ProdutoId");
+                });
+
+            modelBuilder.Entity("ProjetoWebEntityFramework.Dados.Entities.Pedido", b =>
+                {
+                    b.HasOne("ProjetoWebEntityFramework.Dados.Entities.Pedido")
+                        .WithMany("Pedidos")
+                        .HasForeignKey("PedidoId");
                 });
 #pragma warning restore 612, 618
         }

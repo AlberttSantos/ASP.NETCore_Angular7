@@ -9,7 +9,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ProjetoWebEntityFramework.Dados;
-using ProjetoWebEntityFramework.Model;
 
 namespace ProjetoWebEntityFramework
 {
@@ -33,15 +32,20 @@ namespace ProjetoWebEntityFramework
         {
             var sqlConnection = _configuration.GetConnectionString("WebEntityFrameworkDB");
             services.AddDbContext<WebEntityFrameworkContext>(options => options.UseSqlServer(sqlConnection, b => b.MigrationsAssembly("ProjetoWebEntityFramework")));
-            services.AddMvc();
-            services.AddScoped<IProductRepository, ProductRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseStaticFiles();
-            app.UseMvcWithDefaultRoute();
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
+            app.Run(async (context) =>
+            {
+                await context.Response.WriteAsync("Hello World!");
+            });
         }
     }
 }
