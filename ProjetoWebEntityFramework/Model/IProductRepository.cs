@@ -6,5 +6,6 @@ namespace ProjetoWebEntityFramework.Model
     public interface IProductRepository
     {
         List<Produto> ListarProdutos();
+        void Salvar(Produto produto);
     }
 }

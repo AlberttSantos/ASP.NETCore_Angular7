@@ -21,5 +21,11 @@ namespace ProjetoWebEntityFramework.Model
         {
             return _webEntityFrameworkContext.Produto.ToList();
         }
+
+        public void Salvar(Produto produto)
+        {
+            _webEntityFrameworkContext.Produto.Add(produto);
+            _webEntityFrameworkContext.SaveChanges();
+        }
     }
 }
